@@ -14,7 +14,7 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: '2.X'
+    version: '2.2.5'
 
 - task: CmdLine@2
   inputs:
