@@ -14,8 +14,9 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: '2.2.3'
-
+    version: '2.1'
+    includePreviewVersions: true
+    
 - task: CmdLine@2
   inputs:
     script: 'dotnet tool install -g dotnet-script'
