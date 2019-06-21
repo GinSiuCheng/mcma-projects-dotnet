@@ -14,7 +14,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'custom'
-    custom: 'dotnet tool install -g dotnet-script'
+    custom: 'tool install -g dotnet-script'
 
 - task: CmdLine@2
   inputs:
