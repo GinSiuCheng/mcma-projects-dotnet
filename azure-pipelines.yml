@@ -8,15 +8,27 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'ubuntu-16.04'
 
 steps:
 
 - task: CmdLine@2
+  displayName: 'Install dotnet-script'
   inputs:
     script: 'dotnet tool install -g dotnet-script'
 
 - task: CmdLine@2
+  displayName: 'Install Terraform'
+  inputs:
+    script: 'wget https://releases.hashicorp.com/terraform/0.12.2/terraform_0.12.2_linux_amd64.zip
+      mkdir downloads
+      mv terraform downloads/
+      echo ''PATH=\"$PATH:~/downloads\">> .profile
+      source ~/.profile
+      terraform --version'
+
+- task: CmdLine@2
+  displayName: 'Build/Deploy'
   inputs:
     script: './build.sh deploy'
     workingDirectory: '$(Build.SourcesDirectory)/multi-cloud-ai-workflow'
