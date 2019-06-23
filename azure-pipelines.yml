@@ -26,7 +26,7 @@ steps:
       mv terraform downloads/ \
       echo "export PATH="$PATH:~/downloads"" >> ~/.profile \
       source ~/.profile \
-      terraform --version
+      echo "terraform --version"
       '
 
 - task: CmdLine@2
