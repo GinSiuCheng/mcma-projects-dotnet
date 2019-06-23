@@ -11,17 +11,7 @@ pool:
   vmImage: 'ubuntu-16.04'
 
 steps:
-- task: CmdLine@2
-  displayName: 'Install Terraform'
-  inputs:
-    script: 'wget https://releases.hashicorp.com/terraform/0.12.2/terraform_0.12.2_linux_amd64.zip &&
-      unzip terraform_0.12.2_linux_amd64.zip &&
-      mkdir downloads &&
-      mv terraform downloads/ &&
-      echo "export PATH="$PATH:~/downloads"" >> ~/.profile &&
-      source ~/.profile &&
-      terraform --version
-      '
+
 - task: CmdLine@2
   displayName: 'Apply execution permissions'
   inputs: 
