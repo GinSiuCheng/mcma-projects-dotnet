@@ -14,7 +14,7 @@ steps:
 - task: CmdLine@2
   displayName: 'Install dotnet-script'
   inputs:
-    script: 'dotnet tool install -g dotnet-script && logout'
+    script: 'dotnet tool install -g dotnet-script && exit && dotnet script -version'
 
 - task: CmdLine@2
   displayName: 'Install Terraform'
