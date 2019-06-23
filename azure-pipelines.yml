@@ -28,6 +28,10 @@ steps:
       source ~/.profile &&
       terraform --version
       '
+- task: CmdLine@2
+  displayName: 'Apply execution permissions'
+  inputs: 
+    script: 'chmod -R 755 $(Build.SourcesDirectory)/multi-cloud-ai-workflow'
 
 - task: CmdLine@2
   displayName: 'Build/Deploy'
