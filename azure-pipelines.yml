@@ -11,6 +11,11 @@ pool:
   vmImage: 'macOS-10.14'
 
 steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '2.2'
+
 - task: DotNetCoreCLI@2
   displayName: 'Install dotnet-script'
   inputs:
@@ -21,7 +26,7 @@ steps:
 - task: CmdLine@2
   displayName: 'Test dotnet-script install'
   inputs:
-    script: 'export PATH="$PATH:/Users/vsts/.dotnet/tools" && dotnet-script -version'
+    script: 'dotnet-script -version'
 
 - task: CmdLine@2
   displayName: 'Install Terraform'
