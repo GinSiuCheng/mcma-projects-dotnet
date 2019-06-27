@@ -16,11 +16,16 @@ steps:
   inputs:
     command: 'custom'
     custom: 'tool'
-    arguments: 'install -g dotnet-script && export PATH="$PATH:/Users/vsts/.dotnet/tools" && dotnet-script -version'
+    arguments: 'install -g dotnet-script'
 
 - task: CmdLine@2
+  displayName: 'Test dotnet-script install'
   inputs:
-    displayName: 'Install Terraform'
+    script: 'export PATH="$PATH:/Users/vsts/.dotnet/tools" && dotnet-script -version'
+
+- task: CmdLine@2
+  displayName: 'Install Terraform'
+  inputs:
     script: 'brew install terraform && terraform --version'
 
 - task: CmdLine@2
