@@ -16,7 +16,7 @@ steps:
   inputs:
     command: 'custom'
     custom: 'tool'
-    arguments: 'install -g dotnet-script && export PATH="$PATH:/Users/vsts/.dotnet/tools"'
+    arguments: 'install -g dotnet-script && export PATH="$PATH:/Users/vsts/.dotnet/tools" && dotnet-script -version'
 
 - task: CmdLine@2
   inputs:
