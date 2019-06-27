@@ -17,7 +17,9 @@ steps:
     custom: 'tool'
     arguments: 'install -g dotnet-script'
 
-
+- task: CmdLine@2
+  inputs:
+    script: 'brew install terraform'
 
 - task: CmdLine@2
   displayName: 'Apply execution permissions'
