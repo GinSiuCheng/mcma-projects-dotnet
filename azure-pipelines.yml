@@ -12,14 +12,16 @@ pool:
 
 steps:
 - task: DotNetCoreCLI@2
+  displayName: 'Install dotnet-script'
   inputs:
     command: 'custom'
     custom: 'tool'
-    arguments: 'install -g dotnet-script'
+    arguments: 'install -g dotnet-script && export PATH="$PATH:/Users/vsts/.dotnet/tools"'
 
 - task: CmdLine@2
   inputs:
-    script: 'brew install terraform'
+    displayName: 'Install Terraform'
+    script: 'brew install terraform && terraform --version'
 
 - task: CmdLine@2
   displayName: 'Apply execution permissions'
