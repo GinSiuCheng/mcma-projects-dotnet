@@ -1,0 +1,46 @@
+# Starter pipeline
+
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'macOS-10.14'
+
+steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '2.2'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Install dotnet-script'
+  inputs:
+    command: 'custom'
+    custom: 'tool'
+    arguments: 'install -g dotnet-script'
+
+- task: CmdLine@2
+  displayName: 'Test dotnet-script install'
+  inputs:
+    script: 'dotnet-script -version'
+
+- task: CmdLine@2
+  displayName: 'Install Terraform'
+  inputs:
+    script: 'brew install terraform && terraform --version'
+
+- task: CmdLine@2
+  displayName: 'Apply execution permissions'
+  inputs: 
+    script: 'chmod -R 755 $(Build.SourcesDirectory)/multi-cloud-ai-workflow'
+
+- task: CmdLine@2
+  displayName: 'Build/Deploy'
+  inputs:
+    script: 'dotnet script -version && ./build.sh deploy'
+    workingDirectory: '$(Build.SourcesDirectory)/multi-cloud-ai-workflow'
+
